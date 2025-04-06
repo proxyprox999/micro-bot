@@ -1,0 +1,22 @@
+pip install openai
+import openai
+
+# Set up your OpenAI API key
+openai.api_key = 'YOUR_OPENAI_API_KEY'
+
+def ask_question(question):
+    response = openai.Completion.create(
+        engine="davinci-codex",
+        prompt=question,
+        max_tokens=150
+    )
+    return response.choices[0].text.strip()
+
+if __name__ == "__main__":
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ["exit", "quit"]:
+            break
+        answer = ask_question(user_input)
+        print(f"AI: {answer}")
+python your_script_name.py
